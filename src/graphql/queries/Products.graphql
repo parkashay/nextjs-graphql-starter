@@ -1,0 +1,8 @@
+query Products($options: ProductListOptions) {
+  products(options: $options) {
+    items {
+      id
+      name
+    }
+  }
+}
