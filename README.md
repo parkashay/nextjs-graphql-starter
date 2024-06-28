@@ -1,6 +1,6 @@
 ## NextJS and Graphql Starter
 
-Welcome to the Next.js & GraphQL Starter! This repository serves as a boilerplate for building applications with Next.js and GraphQL, providing all the essential setups to get you started quickly
+Welcome to the Next.js & GraphQL Starter! This repository serves as a boilerplate for building applications with Next.js 14 and GraphQL, providing all the essential setups to get you started quickly
 
 ### Prerequisites
 
@@ -11,7 +11,7 @@ Welcome to the Next.js & GraphQL Starter! This repository serves as a boilerplat
 ### Installation
 
     - clone the repo
-    - cd next-graphql-starter
+    - cd nextjs-graphql-starter
     - `npm install` or `pnpm install` or `yarn`
     - copy env.example to .env
 
