@@ -30,7 +30,9 @@ Welcome to the Next.js & GraphQL Starter! This repository serves as a boilerplat
     │ │ ├── mutations/
     | | └── fragments/
     │ ├── styles/
-    │ └── utils/
+    │ └── lib/
+    | | └── providers/
+    | └── utils/
     ├── .eslintrc.js
     ├── .gitignore
     ├── .prettierrc
@@ -45,4 +47,4 @@ Welcome to the Next.js & GraphQL Starter! This repository serves as a boilerplat
 - Add your api url in the .env file.
 - generate your graphql schema with command `pnpm run codegen` or `npm run codegen` or `yarn codegen`
 - generated code will be in the /src/generated directory in graphql.ts file
-- use the providers directory to define your functions to make api calls
+- use the /lib/providers directory to define your functions to make api calls
