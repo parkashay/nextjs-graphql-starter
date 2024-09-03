@@ -29,8 +29,7 @@ Welcome to the Next.js & GraphQL Starter! This repository serves as a boilerplat
     │ │ ├── queries/
     │ │ ├── mutations/
     | | └── fragments/
-    │ ├── styles/
-    │ └── lib/
+    │ ├── lib/
     | | └── providers/
     | └── utils/
     ├── .eslintrc.js
