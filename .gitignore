@@ -9,9 +9,6 @@
 #env
 .env
 
-#generated
-/**/generated
-
 # testing
 /coverage
 

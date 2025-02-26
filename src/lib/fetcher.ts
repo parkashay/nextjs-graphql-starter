@@ -19,6 +19,7 @@ type GraphqlResponse<Response> = {
 type FetcherOptions<Result = any, Variables = any> = {
   document: TypedDocumentNode<Result, Variables>;
   variables?: Variables;
+  headers?: HeadersInit
 } & (
   | {
       cache: RequestCache;
@@ -37,8 +38,9 @@ type FetcherOptions<Result = any, Variables = any> = {
 export const fetcher = async <Result = any, Variables = any>({
   document,
   variables,
-  cache = 'force-cache',
+  cache = 'no-store', // making cache opt-in
   next,
+  headers,
 }: FetcherOptions<Result, Variables>): Promise<Result | never> => {
   const cookieStore = cookies();
   const token = cookieStore.get(AUTH_TOKEN_SESSION_KEY);
@@ -48,6 +50,7 @@ export const fetcher = async <Result = any, Variables = any>({
     headers: {
       'Content-Type': 'application/json',
       Authorization: token ? `Bearer ${token.value}` : '',
+      ...headers
     },
     body: JSON.stringify({
       query: print(document),
@@ -57,6 +60,10 @@ export const fetcher = async <Result = any, Variables = any>({
     ...(next?.revalidate ? { next } : { cache, ...next }),
   });
 
+  /**
+   * The step below is needed if the server responds with a authtoken in a custom header.
+   * If your server sends the token via Set-Cookie header, this step is not needed.
+   */
   const authToken = res.headers.get(AUTH_TOKEN_SESSION_KEY);
   if (authToken) {
     try {
@@ -68,7 +75,7 @@ export const fetcher = async <Result = any, Variables = any>({
       );
     }
   }
-
+ //
   const body = (await res.json()) as GraphqlResponse<Result>;
   if (body.errors) {
     throw body.errors[0];
